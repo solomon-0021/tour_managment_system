@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels - Travel Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">TravelBook</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="hotels.html" class="active">Hotels</a>
+                    <a href="booking.html">Book Now</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Find Your Perfect Stay</h1>
+            <p>Discover amazing hotels at the best prices</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Search and Filters -->
+        <div class="search-filters">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by hotel name or location..." class="form-control">
+            </div>
+            <div class="filters">
+                <select id="locationFilter" class="form-control">
+                    <option value="">All Locations</option>
+                    <option value="New York">New York</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="London">London</option>
+                    <option value="Dubai">Dubai</option>
+                </select>
+                <select id="priceFilter" class="form-control">
+                    <option value="">All Prices</option>
+                    <option value="0-100">$0 - $100</option>
+                    <option value="100-200">$100 - $200</option>
+                    <option value="200-500">$200 - $500</option>
+                    <option value="500+">$500+</option>
+                </select>
+                <select id="ratingFilter" class="form-control">
+                    <option value="">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4+ Stars</option>
+                    <option value="3">3+ Stars</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Hotels Grid -->
+        <div class="hotels-grid" id="hotelsContainer">
+            <!-- Hotels will be dynamically loaded here -->
+        </div>
+
+        <!-- Loading and Error States -->
+        <div id="loadingMessage" class="loading">Loading hotels...</div>
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+        <div id="noResultsMessage" class="error-message" style="display: none;">No hotels found matching your criteria.</div>
+    </div>
+
+    <script src="hotels.js"></script>
+</body>
+</html>
