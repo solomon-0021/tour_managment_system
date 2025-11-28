@@ -1,77 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotels - Travel Booking</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotels - Travel Booking System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
     <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="logo">TravelBook</a>
-                <div class="nav-links">
-                   <a href="index.html">Home</a>
-                    <a href="hotels.html">Hotels</a>
-                    <a href="booking.html" class="active">Book Now</a>
-                     <a href="aboutus.html">About</a>
-                     <a href="contact.html">contact</a>
-                     <a href="login.html">Login</a>
-                     <a href="signup.html">Sign up</a>
-                </div>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <div class="container">
+          <a href="index.html" class="logo">TravelBook</a>
+          <div class="nav-links">
+            <a href="index.html">Home | </a>
+            <a href="hotels.html" class="active">Hotels | </a>
+            <a href="booking.html">Book Now | </a>
+            <a href="aboutus.html">About | </a>
+            <a href="contact.html">Contact | </a>
+            <a href="login.html">Login | </a>
+            <a href="signup.html">Sign Up</a>
+          </div>
+        </div>
+      </nav>
     </header>
 
+    <!-- ================= HERO SECTION ================= -->
     <section class="hero">
-        <div class="container">
-            <h1>Find Your Perfect Stay</h1>
-            <p>Discover amazing hotels at the best prices</p>
-        </div>
+      <div class="container">
+        <h1>Find Your Perfect Stay</h1>
+        <p>Discover amazing hotels at the best prices</p>
+
+        <!-- Search Form in Hero -->
+        <form class="hero-search-form">
+          <input
+            type="text"
+            placeholder="Where are you going?"
+            id="heroLocation"
+            class="form-control"
+            autocomplete="off"
+          />
+          <input type="date" id="checkIn" class="form-control" />
+          <input type="date" id="checkOut" class="form-control" />
+          <select id="guests" class="form-control">
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+          </select>
+          <button type="submit" class="btn-search">Search</button>
+        </form>
+      </div>
     </section>
 
-    <div class="container">
-        <!-- Search and Filters -->
-        <div class="search-filters">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search by hotel name or location..." class="form-control">
-            </div>
-            <div class="filters">
-                <select id="locationFilter" class="form-control">
-                    <option value="">All Locations</option>
-                    <option value="New York">Gondar</option>
-                    <option value="Paris">Lalibela</option>
-                    <option value="Tokyo">Mekelle</option>
-                    <option value="London">Borena</option>
-                </select>
-                <select id="priceFilter" class="form-control">
-                    <option value="">All Prices</option>
-                    <option value="0-100">$0 - $100</option>
-                    <option value="100-200">$100 - $200</option>
-                    <option value="200-500">$200 - $500</option>
-                    <option value="500+">$500+</option>
-                </select>
-                <select id="ratingFilter" class="form-control">
-                    <option value="">All Ratings</option>
-                    <option value="5">5 Stars</option>
-                    <option value="4">4+ Stars</option>
-                    <option value="3">3+ Stars</option>
-                </select>
-            </div>
+    <main class="container">
+      <!-- ================= SEARCH & FILTER SECTION ================= -->
+      <section class="search-filters">
+        <h2>Filter Results</h2>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by hotel name or location..."
+            class="form-control"
+          />
         </div>
 
-        <!-- Hotels Grid -->
-        <div class="hotels-grid" id="hotelsContainer">
-            <!-- Hotels will be dynamically loaded here -->
+        <div class="filters">
+          <select id="locationFilter" class="form-control">
+            <option value="">All Locations</option>
+            <option value="Gondar">Gondar</option>
+            <option value="Lalibela">Lalibela</option>
+            <option value="Mekelle">Mekelle</option>
+            <option value="Borena">Borena</option>
+          </select>
+
+          <select id="priceFilter" class="form-control">
+            <option value="">All Prices</option>
+            <option value="0-100">$0 - $100</option>
+            <option value="100-200">$100 - $200</option>
+            <option value="200-500">$200 - $500</option>
+            <option value="500+">$500+</option>
+          </select>
+
+          <select id="ratingFilter" class="form-control">
+            <option value="">All Ratings</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4+ Stars</option>
+            <option value="3">3+ Stars</option>
+          </select>
+
+          <select id="amenitiesFilter" class="form-control">
+            <option value="">Amenities</option>
+            <option value="wifi">WiFi</option>
+            <option value="pool">Pool</option>
+            <option value="parking">Parking</option>
+            <option value="restaurant">Restaurant</option>
+          </select>
+
+          <select id="sortBy" class="form-control">
+            <option value="">Sort By</option>
+            <option value="price">Price</option>
+            <option value="rating">Rating</option>
+            <option value="distance">Distance</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- ================= HOTEL LISTINGS ================= -->
+      <section class="hotels-grid" id="hotelsContainer">
+        <div class="hotel-card">
+          <img
+            src="images/gondar-hotel1.jpg"
+            alt="Gondar Hotel"
+            class="hotel-img"
+          />
+          <div class="hotel-info">
+            <h3>Gondar Palace Hotel</h3>
+            <p class="location">Gondar • 1.2 km from Fasil Ghebbi</p>
+            <div class="stars">★★★★☆</div>
+            <div class="amenities">
+              <span>WiFi</span>
+              <span>Parking</span>
+              <span>Restaurant</span>
+            </div>
+            <p class="price">$55 / night</p>
+            <a href="hotel-details.html" class="btn-view">View Details</a>
+          </div>
         </div>
 
-        <!-- Loading and Error States -->
-        <div id="loadingMessage" class="loading">Loading hotels...</div>
-        <div id="errorMessage" class="error-message" style="display: none;"></div>
-        <div id="noResultsMessage" class="error-message" style="display: none;">No hotels found matching your criteria.</div>
-    </div>
+        <div class="hotel-card">
+          <img
+            src="images/axum-hotel1.jpg"
+            alt="Axum Hotel"
+            class="hotel-img"
+          />
+          <div class="hotel-info">
+            <h3>Axum Star Hotel</h3>
+            <p class="location">Axum • 800 m from Obelisk</p>
+            <div class="stars">★★★★☆</div>
+            <div class="amenities">
+              <span>WiFi</span>
+              <span>Pool</span>
+            </div>
+            <p class="price">$60 / night</p>
+            <a href="hotel-details.html" class="btn-view">View Details</a>
+          </div>
+        </div>
 
+        <div class="hotel-card">
+          <img
+            src="images/harar-hotel1.jpg"
+            alt="Harar Hotel"
+            class="hotel-img"
+          />
+          <div class="hotel-info">
+            <h3>Harar Heritage Hotel</h3>
+            <p class="location">Harar • 500 m from Jegol Wall</p>
+            <div class="stars">★★★☆☆</div>
+            <div class="amenities">
+              <span>WiFi</span>
+              <span>Breakfast</span>
+            </div>
+            <p class="price">$45 / night</p>
+            <a href="hotel-details.html" class="btn-view">View Details</a>
+          </div>
+        </div>
+
+        <div class="hotel-card">
+          <img
+            src="images/bahir-dar-hotel1.jpg"
+            alt="Bahir Dar Hotel"
+            class="hotel-img"
+          />
+          <div class="hotel-info">
+            <h3>Bahir Dar Lake View Resort</h3>
+            <p class="location">Bahir Dar • Near Lake Tana</p>
+            <div class="stars">★★★★★</div>
+            <div class="amenities">
+              <span>WiFi</span>
+              <span>Pool</span>
+              <span>Parking</span>
+            </div>
+            <p class="price">$90 / night</p>
+            <a href="hotel-details.html" class="btn-view">View Details</a>
+          </div>
+        </div>
+      </section>
+
+      <div id="loadingMessage" class="loading">Loading hotels...</div>
+      <div id="errorMessage" class="error-message" style="display: none"></div>
+      <div id="noResultsMessage" class="error-message" style="display: none">
+        No hotels found matching your criteria.
+      </div>
+
+      <!-- Pagination (Frontend placeholder – real pagination comes from backend) -->
+      <div class="pagination">
+        <button class="page-btn">Prev</button>
+        <button class="page-btn">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">Next</button>
+      </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <h3>TravelBook</h3>
+          <p>Your trusted partner for hotel booking worldwide.</p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hotels.html">Hotels</a></li>
+            <li><a href="aboutus.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Backend integration placeholder -->
     <script src="hotels.js"></script>
-</body>
+  </body>
 </html>
