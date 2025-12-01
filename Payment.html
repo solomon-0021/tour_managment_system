@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBook - Final Layout</title>
+    <link rel="stylesheet" href="payment_style.css"> 
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">TravelBook</a>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="hotels.html">Hotels</a>
+                    <a href="booking.html">Book Now</a>
+                    <a href="aboutus.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-header">
+            <h1>Welcome to TravelBook</h1>
+            <p>Your journey begins here with our final, beautiful styles.</p>
+        </section>
+
+        <div class="payment-container">
+            <div class="payment-form-wrapper">
+                <h2>Payment Details</h2>
+                <form class="payment-form">
+                    <fieldset>
+                        <legend>Card Information</legend>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" required>
+                        </div>
+                        <div class="split-fields">
+                            <div class="split-field form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY" required>
+                            </div>
+                            <div class="split-field form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary large-btn">Confirm & Pay</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="summary-panel-wrapper">
+                <div class="summary-panel">
+                    <h2>Order Summary</h2>
+                    <div class="summary-pricing">
+                        <div class="detail-row"><span>Subtotal</span><span>$150.00</span></div>
+                        <div class="detail-row total-amount"><span>Total</span><span>$165.00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TravelBook. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
