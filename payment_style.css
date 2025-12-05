@@ -1,0 +1,283 @@
+/* ------------------------------------------- */
+/* GENERAL STRUCTURE & CONSISTENCY (Base styles) */
+/* ------------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #fcfcfc; /* Very light background */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ------------------------------------------- */
+/* HEADER & NAVBAR (FLEXBOX and Spacing) */
+/* ------------------------------------------- */
+
+header {
+    background-color: #ffffff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+    padding: 10px 0; 
+    /* Adds space between the header and the main content */
+    margin-bottom: 40px; 
+}
+
+/* 1. Main Container: Flexbox to separate Logo and Nav Links */
+.navbar .container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 800;
+    text-decoration: none;
+    color: #1e88e5; /* Primary color */
+    letter-spacing: -0.5px;
+}
+
+/* 2. Navigation Links Group: Flexbox to space individual links */
+.nav-links {
+    display: flex; 
+    gap: 20px; 
+    align-items: center; 
+}
+
+/* ------------------------------------------- */
+/* INTERACTIVITY FIXES (High Specificity) */
+/* ------------------------------------------- */
+
+/* Normal state for all links (High Specificity) */
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #555; 
+    padding: 8px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* CRITICAL FIX: Forces visited links to use the normal color, overriding browser default (High Specificity) */
+.navbar .nav-links a:visited { 
+    color: #555; /* Use the same color as the normal link state */
+}
+/* Hover State */
+.navbar .nav-links a:hover {
+    color: #1e88e5; 
+    border-bottom: 2px solid #1e88e5; 
+}
+
+/* Active Page Class */
+.navbar .nav-links a.active {
+    color: #1e88e5;
+    font-weight: 700;
+    border-bottom: 2px solid #1e88e5;
+}
+
+/* ------------------------------------------- */
+/* GENERAL BUTTON STYLES */
+/* ------------------------------------------- */
+.btn-primary {
+    padding: 10px 20px;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0;
+}
+
+/* The larger button on the payment page */
+.btn-primary.large-btn {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 1.2em;
+    font-weight: 700;
+    background-color: #4caf50; /* Success Green */
+    border-radius: 8px;
+}
+
+.btn-primary.large-btn:hover {
+    background-color: #388e3c;
+}
+
+
+/* ------------------------------------------- */
+/* PAGE HEADER STYLES */
+/* ------------------------------------------- */
+.page-header {
+    text-align: center;
+    padding: 20px 0 40px; 
+}
+
+.page-header h1 {
+    font-size: 2.5em;
+    color: #1e88e5; 
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+
+/* ------------------------------------------- */
+/* PAYMENT PAGE LAYOUT AND FORM STYLES */
+/* ------------------------------------------- */
+
+.payment-container {
+    display: flex;
+    gap: 40px; 
+    padding-bottom: 50px;
+}
+
+.payment-form-wrapper {
+    flex: 2;
+    min-width: 0;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+}
+
+.summary-panel-wrapper {
+    flex: 1;
+    min-width: 300px;
+}
+
+.payment-form-wrapper h2 {
+    color: #333;
+    border-bottom: 3px solid #1e88e5;
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+.payment-form fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.payment-form legend {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #1e88e5;
+    padding: 0 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #1e88e5;
+    box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+    outline: none;
+}
+
+.split-fields {
+    display: flex;
+    gap: 20px;
+}
+.split-field {
+    flex: 1;
+}
+
+/* SUMMARY PANEL STYLES */
+.summary-panel-wrapper h2 {
+    color: #333;
+    font-size: 1.5em;
+    border-bottom: 3px solid #e0e0e0;
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+}
+
+.summary-panel {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0; 
+    font-size: 1em;
+    border-bottom: 1px dotted #f0f0f0;
+}
+
+.summary-pricing .detail-row {
+    border-top: 1px solid #f0f0f0;
+}
+
+.summary-pricing .total-amount {
+    font-size: 1.2em;
+    font-weight: 700;
+    padding-top: 15px;
+    border-top: 2px solid #333;
+    margin-top: 15px;
+}
+
+/* ------------------------------------------- */
+/* MOBILE RESPONSIVENESS */
+/* ------------------------------------------- */
+
+/* Header Mobile Styles */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column; 
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        margin-bottom: 15px; 
+    }
+
+    .nav-links {
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 12px; 
+    }
+}
+
+/* Payment Page Mobile Styles */
+@media (max-width: 991px) {
+    .payment-container {
+        flex-direction: column; 
+        gap: 20px; 
+    }
+}
