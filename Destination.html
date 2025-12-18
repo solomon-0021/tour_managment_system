@@ -7,47 +7,166 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>Tourist Booking System</h1>
 
-  <section>
-    <div class="card">
-      <img src="axum.jpg" alt="Axum Obelisk">
-      <div class="card-content">
-        <h2>Axum (Obelisk & Ancient Ruins)</h2>
-        <p>Ancient capital of the Aksumite Kingdom, home to towering obelisks, the Ark of the Covenant legend, and rich archaeological history.</p>
-        <a href="#" class="explore-btn">Explore</a>
+    <h2>1. Explore Destinations</h2>
+    <div class="places-grid">
+      <div class="place-card">
+        <img src="lalibela.jpg" alt="Lalibela">
+        <div class="place-card-content">
+          <h3>Lalibela</h3>
+          <p>Lalibela is famous for its 11 rock-hewn churches carved from a single stone. Visitors can explore ancient religious architecture and enjoy cultural experiences.</p>
+          <button onclick="choosePlace('Lalibela','Visiting rock-hewn churches, cultural tours, spiritual ceremonies')">Choose</button>
+          <a href="lalibela.html">Explore</a>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <img src="axum.jpg" alt="Axum">
+        <div class="place-card-content">
+          <h3>Axum</h3>
+          <p>Axum is known for its ancient obelisks, the Queen of Sheba palace ruins, and religious treasures. It is considered Ethiopia’s oldest city.</p>
+          <button onclick="choosePlace('Axum','Exploring ancient obelisks, museums, and historic ruins')">Choose</button>
+          <a href="axum.html">Explore</a>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <img src="gonder.jpg" alt="Gondar">
+        <div class="place-card-content">
+          <h3>Gondar</h3>
+          <p>Gondar features castles, royal compounds, and ancient architecture. Known as the “Camelot of Africa,” it offers beautiful history and art.</p>
+          <button onclick="choosePlace('Gondar','Castle visits, historic tours, cultural experiences')">Choose</button>
+          <a href="gondar.html">Explore</a>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <img src="tana.jpg" alt="Lake Tana">
-      <div class="card-content">
-        <h2>Lake Tana & Monasteries</h2>
-        <p>The source of the Blue Nile, Lake Tana hosts centuries-old island monasteries and beautiful views near Bahir Dar.</p>
-        <a href="#" class="explore-btn">Explore</a>
-      </div>
+    <h2>2. Choose Visit Date</h2>
+    <input type="date" id="visitDate" required>
+
+    <h2>3. Choose Transportation</h2>
+    <form id="transportForm">
+      <label><input type="radio" name="transport" value="Car"> Car (1500 ETB, 2 hours)</label><br>
+      <label><input type="radio" name="transport" value="Minibus"> Minibus (1000 ETB, 2hr 30min)</label><br>
+      <label><input type="radio" name="transport" value="Bus"> Bus (600 ETB, 3 hours)</label><br>
+      <label><input type="radio" name="transport" value="Motorbike"> Motorbike (500 ETB, 1hr 15min)</label><br><br>
+      <button type="button" onclick="confirmTransport()">Confirm Transport</button>
+    </form>
+    <p id="transportResult"></p>
+
+    <h2>4. Select Guide</h2>
+    <label><input type="radio" name="gender" value="male"> Male Guide</label><br>
+    <label><input type="radio" name="gender" value="female"> Female Guide</label><br><br>
+    <button type="button" onclick="showGuides()">Show Available Guides</button>
+    <div id="guidesList"></div>
+    <p id="guideResult"></p>
+
+    <h2>5. Booking Summary</h2>
+    <div id="summary" class="summary-box">
+      <p><strong>Destination:</strong> <span id="summaryPlace"></span></p>
+      <p><strong>Activities:</strong> <span id="summaryActivities"></span></p>
+      <p><strong>Date:</strong> <span id="summaryDate"></span></p>
+      <p><strong>Transportation:</strong> <span id="summaryTransport"></span></p>
+      <p><strong>Guide:</strong> <span id="summaryGuide"></span></p>
     </div>
 
-    <div class="card">
-      <img src="afar.jpg" alt="Afar desert">
-      <div class="card-content">
-        <h2>Danakil Depression (Walled City)</h2>
-        <p>The Danakil Depression in the Afar region of Ethiopia offers several unique tourist attractions, including a permanent lava lake, colorful geothermal springs, and vast salt flats where the local Afar people still harvest salt by hand. </p>
-        <a href="#" class="explore-btn">Explore</a>
-      </div>
-    </div>
-    <div class="card">
-      <img src="harar.jpg" alt="Harar Jugol">
-      <div class="card-content">
-        <h2>Harar Jugol (Walled City)</h2>
-        <p>A UNESCO World Heritage site, Harar is known for its narrow alleyways, colorful markets, and unique culture blending Islamic and African traditions.</p>
-        <a href="#" class="explore-btn">Explore</a>
-      </div>
-    </div>
-  </section>
+    <form onsubmit="return finalSubmit()">
+      <input type="hidden" id="finalPlace" required>
+      <button type="submit">Submit Booking</button>
+    </form>
+  </div>
 
-  <footer>
-    <p>© 2025 Discover Ethiopia | Developed by Destinations Module Developer</p>
-  </footer>
+  <script>
+    let selectedPlace = '';
+    let selectedActivities = '';
 
+    function choosePlace(place, activities){
+      selectedPlace = place;
+      selectedActivities = activities;
+      document.getElementById('summaryPlace').textContent = place;
+      document.getElementById('summaryActivities').textContent = activities;
+      document.getElementById('finalPlace').value = place;
+      document.getElementById('summary').style.display = 'block';
+      updateSummary();
+    }
+
+    function confirmTransport(){
+      const date = document.getElementById('visitDate').value;
+      const transport = document.querySelector('input[name="transport"]:checked');
+      if(!date){
+        alert("Please select a date.");
+        return;
+      }
+      if(!transport){
+        alert("Please select a transportation option.");
+        return;
+      }
+      document.getElementById('transportResult').innerText = "Transportation selected: " + transport.value;
+      updateSummary();
+    }
+
+    function showGuides(){
+      const gender = document.querySelector('input[name="gender"]:checked');
+      if(!gender){
+        alert("Please select guide gender.");
+        return;
+      }
+      let html = "<h3>Select a Guide</h3>";
+      if(gender.value === "male"){
+        html += `<label><input type="radio" name="guide" value="Kebede"> Kebede</label><br>
+                 <label><input type="radio" name="guide" value="Alemu"> Alemu</label><br>
+                 <label><input type="radio" name="guide" value="Abera"> Abera</label><br>
+                 <label><input type="radio" name="guide" value="Ayele"> Ayele</label><br>`;
+      } else {
+        html += `<label><input type="radio" name="guide" value="Lemlem"> Lemlem</label><br>
+                 <label><input type="radio" name="guide" value="Aster"> Aster</label><br>
+                 <label><input type="radio" name="guide" value="Mulu"> Mulu</label><br>
+                 <label><input type="radio" name="guide" value="Belay"> Belay</label><br>`;
+      }
+      html += `<br><button type="button" onclick="confirmGuide()">Confirm Guide</button>`;
+      document.getElementById('guidesList').innerHTML = html;
+    }
+
+    function confirmGuide(){
+      const guide = document.querySelector('input[name="guide"]:checked');
+      if(!guide){
+        alert("Please select a guide.");
+        return;
+      }
+      document.getElementById('guideResult').innerText = "Guide selected: " + guide.value;
+      updateSummary();
+    }
+
+    function updateSummary(){
+      document.getElementById('summaryDate').textContent =  document.getElementById('visitDate').value || "Not selected"; 
+      const transport = document.querySelector('input[name="transport"]:checked');
+      document.getElementById('summaryTransport').textContent = transport ? transport.value : "Not selected";
+      const guide = document.querySelector('input[name="guide"]:checked');
+      document.getElementById('summaryGuide').textContent = guide ? guide.value : "Not selected";
+    }
+
+    function finalSubmit(){
+      if(selectedPlace === ''){
+        alert("Please choose a destination.");
+        return false;
+      }
+      if(document.getElementById('visitDate').value === ''){
+        alert("Please choose a date.");
+        return false;
+      }
+      if(!document.querySelector('input[name="transport"]:checked')){
+        alert("Please choose transportation.");
+        return false;
+      }
+      if(!document.querySelector('input[name="guide"]:checked')){
+        alert("Please choose a guide.");
+        return false;
+      }
+      alert("Booking submitted successfully!");
+      return true;
+    }
+  </script>
 </body>
 </html>
