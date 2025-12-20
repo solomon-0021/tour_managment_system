@@ -1,249 +1,342 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tourist Booking System</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    .container {
-      max-width: 1000px;
-      background: white;
-      padding: 20px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .places-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .place-card {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .place-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-    .place-card-content {
-      padding: 15px;
-      flex-grow: 1;
-    }
-    .place-card h3 {
-      margin: 0 0 10px 0;
-    }
-    .place-card p {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-    .place-card button, .place-card a {
-      padding: 8px 12px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      text-decoration: none;
-      display: inline-block;
-      margin-right: 5px;
-      margin-top: 5px;
-    }
-    .place-card button:hover, .place-card a:hover {
-      background-color: #0056b3;
-    }
-    .summary-box {
-      background: #dff0d8;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
-      display: none;
-    }
-    input[type="date"] {
-      padding: 8px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      width: 100%;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethio Travel – Destination Booking</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
+  padding:20px;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+h1,h2{
+  text-align:center;
+  color:#333;
+}
+.intro{
+  text-align:center;
+  color:#555;
+  margin-bottom:30px;
+}
+.places-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+.place-card{
+  border-radius:12px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.1);
+  overflow:hidden;
+  background:white;
+}
+.place-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.place-card-content{
+  padding:15px;
+}
+.place-card h3{
+  margin:0;
+  color:#007bff;
+}
+.place-card p{
+  font-size:14px;
+  color:#555;
+}
+button,input[type="date"]{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+button{
+  background:#007bff;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+button:hover{
+  background:#0056b3;
+}
+label{
+  display:block;
+  margin:8px 0;
+}
+
+/* 🔥 STEP FIX */
+.step{
+  margin-top:35px;
+}
+
+.summary{
+  background:#e8f5e9;
+  padding:20px;
+  border-radius:10px;
+  display:none;
+  margin-top:20px;
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Tourist Booking System</h1>
 
-    <h2>1. Explore Destinations</h2>
-    <div class="places-grid">
-      <div class="place-card">
-        <img src="lalibela.jpg" alt="Lalibela">
-        <div class="place-card-content">
-          <h3>Lalibela</h3>
-          <p>Lalibela is famous for its 11 rock-hewn churches carved from a single stone. Visitors can explore ancient religious architecture and enjoy cultural experiences.</p>
-          <button onclick="choosePlace('Lalibela','Visiting rock-hewn churches, cultural tours, spiritual ceremonies')">Choose</button>
-          <a href="lalibela.html">Explore</a>
-        </div>
-      </div>
+<div class="container">
 
-      <div class="place-card">
-        <img src="axum.jpg" alt="Axum">
-        <div class="place-card-content">
-          <h3>Axum</h3>
-          <p>Axum is known for its ancient obelisks, the Queen of Sheba palace ruins, and religious treasures. It is considered Ethiopia’s oldest city.</p>
-          <button onclick="choosePlace('Axum','Exploring ancient obelisks, museums, and historic ruins')">Choose</button>
-          <a href="axum.html">Explore</a>
-        </div>
-      </div>
+<h1>Ethio Travel – Discover Ethiopia</h1>
+<p class="intro">
+Choose your destination, learn about it, select date, transportation and a professional guide.
+</p>
 
-      <div class="place-card">
-        <img src="gonder.jpg" alt="Gondar">
-        <div class="place-card-content">
-          <h3>Gondar</h3>
-          <p>Gondar features castles, royal compounds, and ancient architecture. Known as the “Camelot of Africa,” it offers beautiful history and art.</p>
-          <button onclick="choosePlace('Gondar','Castle visits, historic tours, cultural experiences')">Choose</button>
-          <a href="gondar.html">Explore</a>
-        </div>
+<h2>1. Choose Destination</h2>
+
+<div class="places-grid">
+ <div class="place-card">
+      <img src="lalibela.jpg" alt="Lalibela">
+      <div class="place-card-content">
+<h3>Lalibela</h3>
+        <p>UNESCO World Heritage site famous for its rock-hewn churches and religious history.</p>
+        <p><span class="highlight">Activities:</span></p>
+        <ul>
+          <li>Visit rock-hewn churches</li>
+          <li>Attend religious ceremonies</li>
+          <li>Explore local culture & history</li>
+        </ul>
+        <p><span class="highlight">Best Time to Visit:</span> October – March</p>
+        <button onclick="choosePlace('Lalibela','Church tours, cultural exploration')">Choose</button>
       </div>
     </div>
 
-    <h2>2. Choose Visit Date</h2>
-    <input type="date" id="visitDate" required>
-
-    <h2>3. Choose Transportation</h2>
-    <form id="transportForm">
-      <label><input type="radio" name="transport" value="Car"> Car (1500 ETB, 2 hours)</label><br>
-      <label><input type="radio" name="transport" value="Minibus"> Minibus (1000 ETB, 2hr 30min)</label><br>
-      <label><input type="radio" name="transport" value="Bus"> Bus (600 ETB, 3 hours)</label><br>
-      <label><input type="radio" name="transport" value="Motorbike"> Motorbike (500 ETB, 1hr 15min)</label><br><br>
-      <button type="button" onclick="confirmTransport()">Confirm Transport</button>
-    </form>
-    <p id="transportResult"></p>
-
-    <h2>4. Select Guide</h2>
-    <label><input type="radio" name="gender" value="male"> Male Guide</label><br>
-    <label><input type="radio" name="gender" value="female"> Female Guide</label><br><br>
-    <button type="button" onclick="showGuides()">Show Available Guides</button>
-    <div id="guidesList"></div>
-    <p id="guideResult"></p>
-
-    <h2>5. Booking Summary</h2>
-    <div id="summary" class="summary-box">
-      <p><strong>Destination:</strong> <span id="summaryPlace"></span></p>
-      <p><strong>Activities:</strong> <span id="summaryActivities"></span></p>
-      <p><strong>Date:</strong> <span id="summaryDate"></span></p>
-      <p><strong>Transportation:</strong> <span id="summaryTransport"></span></p>
-      <p><strong>Guide:</strong> <span id="summaryGuide"></span></p>
+    <!-- Axum -->
+    <div class="place-card">
+      <img src="axum.jpg" alt="Axum">
+      <div class="place-card-content">
+        <h3>Axum</h3>
+        <p>Ancient city known for obelisks and the legendary Queen of Sheba.</p>
+        <p><span class="highlight">Activities:</span></p>
+        <ul>
+          <li>Explore ancient obelisks</li>
+          <li>Visit museums</li>
+          <li>Discover archaeological ruins</li>
+        </ul>
+        <p><span class="highlight">Best Time to Visit:</span> September – April</p>
+        <button onclick="choosePlace('Axum','Ancient ruins and museum visits')">Choose</button>
+      </div>
     </div>
 
-    <form onsubmit="return finalSubmit()">
-      <input type="hidden" id="finalPlace" required>
-      <button type="submit">Submit Booking</button>
-    </form>
+    <!-- Simien Mountains -->
+    <div class="place-card">
+      <img src="simien.jpg" alt="Simien Mountains">
+      <div class="place-card-content">
+        <h3>Simien Mountains</h3>
+        <p>Stunning mountains with deep valleys and rare wildlife.</p>
+        <p><span class="highlight">Activities:</span></p>
+        <ul>
+          <li>Mountain trekking</li>
+          <li>Wildlife watching</li>
+          <li>Photography</li>
+        </ul>
+        <p><span class="highlight">Best Time to Visit:</span> September – April</p>
+        <button onclick="choosePlace('Simien Mountains','Hiking and wildlife adventure')">Choose</button>
+      </div>
+    </div>
+
+    <!-- Harar -->
+    <div class="place-card">
+      <img src="harar.jpg" alt="Harar">
+      <div class="place-card-content">
+        <h3>Harar</h3>
+        <p>Historic walled city famous for markets and hyena feeding tradition.</p>
+        <p><span class="highlight">Activities:</span></p>
+        <ul>
+          <li>Walk inside the old city walls</li>
+          <li>Visit colorful markets</li>
+          <li>Watch hyena feeding at night</li>
+        </ul>
+        <p><span class="highlight">Best Time to Visit:</span> October – March</p>
+        <button onclick="choosePlace('Harar','Cultural city tour and markets')">Choose</button>
+      </div>
+    </div>
+    <div class="place-card">
+  <img src="gondar.jpg" alt="Gondar">
+  <div class="place-card-content">
+    <h3>Gondar</h3>
+    <p>Known as the “Camelot of Africa”, Gondar is famous for its royal castles and rich imperial history.</p>
+    <p><strong>Activities:</strong></p>
+    <ul>
+      <li>Visit Fasil Ghebbi castles</li>
+      <li>Explore ancient churches</li>
+      <li>Learn Ethiopian imperial history</li>
+    </ul>
+    <p><strong>Best Time to Visit:</strong> October – March</p>
+  </div>
+</div>
+<div class="place-card">
+  <img src="afar.jpg" alt="Afar / Danakil Depression">
+  <div class="place-card-content">
+    <h3>Afar / Danakil Depression</h3>
+    <p>One of the hottest places on Earth, famous for lava lakes, salt flats, and colorful landscapes.</p>
+    <p><strong>Activities:</strong></p>
+    <ul>
+      <li>Visit Erta Ale volcano</li>
+      <li>Explore salt flats</li>
+      <li>Experience Afar culture</li>
+    </ul>
+    <p><strong>Best Time to Visit:</strong> October – February</p>
+  </div>
+</div>
+<div class="place-card">
+  <img src="museum.jpg" alt="National Museum of Ethiopia">
+  <div class="place-card-content">
+    <h3>National Museum of Ethiopia</h3>
+    <p>Home of the famous fossil “Lucy” and collections of Ethiopian history and culture.</p>
+    <p><strong>Activities:</strong></p>
+    <ul>
+      <li>See ancient fossils and artifacts</li>
+      <li>Learn Ethiopian history</li>
+      <li>Explore cultural exhibitions</li>
+    </ul>
+    <p><strong>Best Time to Visit:</strong> Year-round</p>
+  </div>
+</div>
+<div class="place">
+  <img src="omovalley.jpg" alt="Omo Valley">
+  <div class="place-card-content">
+    <h3>Omo Valley</h3>
+    <p>Remote region famous for diverse tribes, traditions, and beautiful river landscapes.</p>
+    <p><strong>Activities:</strong></p>
+    <ul>
+      <li>Visit indigenous tribal villages</li>
+      <li>Attend cultural festivals</li>
+      <li>Explore Omo River scenery</li>
+    </ul>
+    <p><strong>Best Time to Visit:</strong> November – March</p>
+  </div>
+</div>
+<div class="step">
+  <h2>2. Select Visit Date</h2>
+  <input type="date" id="visitDate" onchange="updateSummary()">
+</div>
+
+
+<div class="step">
+  <h2>3. Choose Transportation</h2>
+  <label><input type="radio" name="transport" value="Car" onchange="updateSummary()"> Car</label>
+  <label><input type="radio" name="transport" value="Bus" onchange="updateSummary()"> Bus</label>
+  <label><input type="radio" name="transport" value="Minibus" onchange="updateSummary()"> Minibus</label>
+  <label><input type="radio" name="transport" value="Motorbike" onchange="updateSummary()"> Motorbike</label>
+</div>
+
+
+<div class="step">
+  <h2>4. Select Guide</h2>
+
+  <div class="places-grid">
+
+    <div class="place-card">
+      <img src="guide1.jpg">
+      <div class="place-card-content">
+        <h3>Kebede</h3>
+        <p>Experienced historical guide specializing in Lalibela, Axum, and Gondar.</p>
+        <button onclick="selectGuide('Kebede')">Select Guide</button>
+      </div>
+    </div>
+
+    <div class="place-card">
+      <img src="guide2.jpg">
+      <div class="place-card-content">
+        <h3>Aster</h3>
+        <p>Museum and city tour expert with strong communication skills.</p>
+        <button onclick="selectGuide('Aster')">Select Guide</button>
+      </div>
+    </div>
+
+    <div class="place-card">
+      <img src="guide3.jpg">
+      <div class="place-card-content">
+        <h3>Alemu</h3>
+        <p>Adventure guide specializing in mountains and trekking tours.</p>
+        <button onclick="selectGuide('Alemu')">Select Guide</button>
+      </div>
+    </div>
+
+    <div class="place-card">
+      <img src="guide4.jpg">
+      <div class="place-card-content">
+        <h3>Lemlem</h3>
+        <p>Cultural guide expert in Omo Valley and Harar traditions.</p>
+        <button onclick="selectGuide('Lemlem')">Select Guide</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="step">
+  <h2>5. Booking Summary</h2>
+
+  <div class="summary" id="summary">
+    <p><strong>Destination:</strong> <span id="sumPlace"></span></p>
+    <p><strong>Destination Description:</strong> <span id="sumDesc"></span></p>
+    <p><strong>Date:</strong> <span id="sumDate"></span></p>
+    <p><strong>Transportation:</strong> <span id="sumTransport"></span></p>
+    <p><strong>Guide:</strong> <span id="sumGuide"></span></p>
   </div>
 
-  <script>
-    let selectedPlace = '';
-    let selectedActivities = '';
+  <button onclick="finalSubmit()">Submit Booking</button>
+</div>
 
-    function choosePlace(place, activities){
-      selectedPlace = place;
-      selectedActivities = activities;
-      document.getElementById('summaryPlace').textContent = place;
-      document.getElementById('summaryActivities').textContent = activities;
-      document.getElementById('finalPlace').value = place;
-      document.getElementById('summary').style.display = 'block';
-      updateSummary();
-    }
+</div>
 
-    function confirmTransport(){
-      const date = document.getElementById('visitDate').value;
-      const transport = document.querySelector('input[name="transport"]:checked');
-      if(!date){
-        alert("Please select a date.");
-        return;
-      }
-      if(!transport){
-        alert("Please select a transportation option.");
-        return;
-      }
-      document.getElementById('transportResult').innerText = "Transportation selected: " + transport.value;
-      updateSummary();
-    }
+<script>
+let selectedPlace="";
+let selectedDesc="";
+let selectedGuide="";
 
-    function showGuides(){
-      const gender = document.querySelector('input[name="gender"]:checked');
-      if(!gender){
-        alert("Please select guide gender.");
-        return;
-      }
-      let html = "<h3>Select a Guide</h3>";
-      if(gender.value === "male"){
-        html += `<label><input type="radio" name="guide" value="Kebede"> Kebede</label><br>
-                 <label><input type="radio" name="guide" value="Alemu"> Alemu</label><br>
-                 <label><input type="radio" name="guide" value="Abera"> Abera</label><br>
-                 <label><input type="radio" name="guide" value="Ayele"> Ayele</label><br>`;
-      } else {
-        html += `<label><input type="radio" name="guide" value="Lemlem"> Lemlem</label><br>
-                 <label><input type="radio" name="guide" value="Aster"> Aster</label><br>
-                 <label><input type="radio" name="guide" value="Mulu"> Mulu</label><br>
-                 <label><input type="radio" name="guide" value="Belay"> Belay</label><br>`;
-      }
-      html += `<br><button type="button" onclick="confirmGuide()">Confirm Guide</button>`;
-      document.getElementById('guidesList').innerHTML = html;
-    }
+function choosePlace(place,desc){
+  selectedPlace=place;
+  selectedDesc=desc;
+  document.getElementById("summary").style.display="block";
+  updateSummary();
+}
 
-    function confirmGuide(){
-      const guide = document.querySelector('input[name="guide"]:checked');
-      if(!guide){
-        alert("Please select a guide.");
-        return;
-      }
-      document.getElementById('guideResult').innerText = "Guide selected: " + guide.value;
-      updateSummary();
-    }
+function selectGuide(guide){
+  selectedGuide=guide;
+  updateSummary();
+}
 
-    function updateSummary(){
-      document.getElementById('summaryDate').textContent =  document.getElementById('visitDate').value || "Not selected"; 
-      const transport = document.querySelector('input[name="transport"]:checked');
-      document.getElementById('summaryTransport').textContent = transport ? transport.value : "Not selected";
-      const guide = document.querySelector('input[name="guide"]:checked');
-      document.getElementById('summaryGuide').textContent = guide ? guide.value : "Not selected";
-    }
+function updateSummary(){
+  document.getElementById("sumPlace").innerText=selectedPlace||"Not selected";
+  document.getElementById("sumDesc").innerText=selectedDesc||"Not selected";
+  document.getElementById("sumDate").innerText=document.getElementById("visitDate").value||"Not selected";
+  const transport=document.querySelector('input[name="transport"]:checked');
+  document.getElementById("sumTransport").innerText=transport?transport.value:"Not selected";
+  document.getElementById("sumGuide").innerText=selectedGuide||"Not selected";
+}
 
-    function finalSubmit(){
-      if(selectedPlace === ''){
-        alert("Please choose a destination.");
-        return false;
-      }
-      if(document.getElementById('visitDate').value === ''){
-        alert("Please choose a date.");
-        return false;
-      }
-      if(!document.querySelector('input[name="transport"]:checked')){
-        alert("Please choose transportation.");
-        return false;
-      }
-      if(!document.querySelector('input[name="guide"]:checked')){
-        alert("Please choose a guide.");
-        return false;
-      }
-      alert("Booking submitted successfully!");
-      return true;
-    }
-  </script>
+function finalSubmit(){
+  if(!selectedPlace){ alert("Please select a destination."); return; }
+  if(!document.getElementById("visitDate").value){ alert("Please select a date."); return; }
+  if(!document.querySelector('input[name="transport"]:checked')){ alert("Please select transportation."); return; }
+  if(!selectedGuide){ alert("Please select a guide."); return; }
+
+  alert("Booking submitted successfully!");
+}
+</script>
+
 </body>
 </html>
