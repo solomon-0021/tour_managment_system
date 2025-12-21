@@ -79,8 +79,106 @@ label{
 
 
 .step{
+display: block;
   margin-top:35px;
 }
+```css
+/* ===== GLOBAL VISUAL POLISH ===== */
+body{
+  background: linear-gradient(135deg, #eef2f7, #f9fbfd);
+}
+
+/* ===== HEADINGS ===== */
+h1{
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+h2{
+  margin-bottom: 15px;
+  position: relative;
+}
+h2::after{
+  content:"";
+  width:60px;
+  height:3px;
+  background:#007bff;
+  display:block;
+  margin:10px auto 0;
+  border-radius:3px;
+}
+
+/* ===== PLACE CARDS ===== */
+.place-card{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.place-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.place-card img{
+  transition: transform 0.4s ease;
+}
+.place-card:hover img{
+  transform: scale(1.05);
+}
+
+/* ===== BUTTONS ===== */
+button{
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+button:hover{
+  transform: translateY(-2px);
+}
+
+/* ===== STEP SECTIONS ===== */
+.step{
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border-left: 6px solid #007bff;
+}
+
+/* ===== TRANSPORT OPTIONS ===== */
+.step label{
+  background:#f4f8ff;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid #d6e4ff;
+  transition: background 0.2s ease;
+}
+.step label:hover{
+  background:#e0ebff;
+}
+
+/* ===== SUMMARY ===== */
+.summary{
+  background: linear-gradient(135deg, #e8f5e9, #f1fff4);
+  border-left: 6px solid #4caf50;
+}
+.summary p{
+  margin:8px 0;
+  font-size:15px;
+}
+
+/* ===== SMOOTH APPEAR EFFECT ===== */
+.step, .place-card{
+  animation: fadeUp 0.5s ease;
+}
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform: translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+
 
 .summary{
   background:#e8f5e9;
@@ -182,6 +280,7 @@ Choose your destination, learn about it, select date, transportation and a profe
       <li>Learn Ethiopian imperial history</li>
     </ul>
     <p><strong>Best Time to Visit:</strong> October – March</p>
+    <button onclick="choosePlace('Gondar','royal castles and churches')">Choose</button>
   </div>
 </div>
 <div class="place-card">
@@ -196,6 +295,7 @@ Choose your destination, learn about it, select date, transportation and a profe
       <li>Experience Afar culture</li>
     </ul>
     <p><strong>Best Time to Visit:</strong> October – February</p>
+    <button onclick="choosePlace('Afar','Erta Ale and salt flats')">Choose</button>
   </div>
 </div>
 <div class="place-card">
@@ -210,6 +310,7 @@ Choose your destination, learn about it, select date, transportation and a profe
       <li>Explore cultural exhibitions</li>
     </ul>
     <p><strong>Best Time to Visit:</strong> Year-round</p>
+    <button onclick="choosePlace('Museum','fossils and artifacts')">Choose</button>
   </div>
 </div>
 <div class="place">
@@ -224,6 +325,7 @@ Choose your destination, learn about it, select date, transportation and a profe
       <li>Explore Omo River scenery</li>
     </ul>
     <p><strong>Best Time to Visit:</strong> November – March</p>
+    <button onclick="choosePlace('Omo Valley','tribal villages and cultral')">Choose</button>
   </div>
 </div>
 <div class="step">
@@ -234,10 +336,26 @@ Choose your destination, learn about it, select date, transportation and a profe
 
 <div class="step">
   <h2>3. Choose Transportation</h2>
-  <label><input type="radio" name="transport" value="Car" onchange="updateSummary()"> Car</label>
-  <label><input type="radio" name="transport" value="Bus" onchange="updateSummary()"> Bus</label>
-  <label><input type="radio" name="transport" value="Minibus" onchange="updateSummary()"> Minibus</label>
-  <label><input type="radio" name="transport" value="Motorbike" onchange="updateSummary()"> Motorbike</label>
+
+  <label>
+    <input type="radio" name="transport" value="Car" onchange="updateSummary()">
+    Car <span style="float:right; font-weight:bold;">800 Birr</span>
+  </label>
+
+  <label>
+    <input type="radio" name="transport" value="Bus" onchange="updateSummary()">
+    Bus <span style="float:right; font-weight:bold;">300 Birr</span>
+  </label>
+
+  <label>
+    <input type="radio" name="transport" value="Minibus" onchange="updateSummary()">
+    Minibus <span style="float:right; font-weight:bold;">450 Birr</span>
+  </label>
+
+  <label>
+    <input type="radio" name="transport" value="Motorbike" onchange="updateSummary()">
+    Motorbike <span style="float:right; font-weight:bold;">250 Birr</span>
+  </label>
 </div>
 
 
